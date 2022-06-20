@@ -2,13 +2,21 @@
 
 class TasksController < ApplicationController
   def index
-    @tasks = ['Task1', 'Task2', 'Task3']
+    @tasks = Task.all
   end
 
   def new
   end
 
   def create
-    binding.pry 
+    #binding.pry
+    task = Task.new({
+      title: params[:task][:title],
+      description: params[:task][:description]
+    })
+    #binding.pry
+    task.save
+    #binding.pry
+    redirect_to '/tasks'
   end
 end
